@@ -148,7 +148,7 @@ public class CategoryEvents extends AppCompatActivity {
                 "date" + " DESC"
         );
     }
-    
+
     @Override
     protected void onResume() {
         super.onResume();

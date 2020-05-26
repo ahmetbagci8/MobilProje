@@ -52,12 +52,17 @@ public class RemainderActivity extends AppCompatActivity {
         View background=findViewById(R.id.background);
         final SharedPreferences sp = getSharedPreferences("ayarlar", MODE_PRIVATE);
         String app_theme = sp.getString("app-theme", "light");
+        String hatirlatmaSayiSp = sp.getString("hatirlatmaSayi", "1");
+        String hatirlatmaTipSp = sp.getString("hatirlatmaTipi", "saat");
+        String tekrarSayiSp = sp.getString("tekrarSayi", "1");
+        String tekrarTipSp = sp.getString("tekrarTipi", "gün");
         if(app_theme.equals("light")){
             background.setBackgroundColor(Color.WHITE);
         }
         else{
             background.setBackgroundColor(0xFF383131);
         }
+
         tekrarSayiText1=findViewById(R.id.tekrarSayi_Text1);
         hatirlatmaSayiText1=findViewById(R.id.hatirlatmaSayi_Text1);
         hatirlatmaTipSpinner1=findViewById(R.id.hatirlatmaTip_spinner1);
@@ -71,6 +76,12 @@ public class RemainderActivity extends AppCompatActivity {
         hatirlatmaTipSpinner3=findViewById(R.id.hatirlatmaTip_spinner3);
         tekrarTipSpinner3=findViewById(R.id.tekrarTip_spinner3);
         remainderUpdateButton=findViewById(R.id.remainderUpdate_button);
+        hatirlatmaSayiText1.setText(hatirlatmaSayiSp);
+        hatirlatmaSayiText2.setText(hatirlatmaSayiSp);
+        hatirlatmaSayiText3.setText(hatirlatmaSayiSp);
+        tekrarSayiText1.setText(tekrarSayiSp);
+        tekrarSayiText2.setText(tekrarSayiSp);
+        tekrarSayiText3.setText(tekrarSayiSp);
         checkboxAlarm1=findViewById(R.id.checkBox1);
         checkboxTekrar1=findViewById(R.id.checkBox2);
         checkboxAlarm2=findViewById(R.id.checkBox3);
@@ -100,6 +111,37 @@ public class RemainderActivity extends AppCompatActivity {
         tekrarTipSpinner2.setAdapter(tekrarAdapter);
         hatirlatmaTipSpinner3.setAdapter(hatirlatmaAdapter);
         tekrarTipSpinner3.setAdapter(tekrarAdapter);
+        if(tekrarTipSp.equals("saat")) tekrarTipSpinner1.setSelection(0);
+        else if(tekrarTipSp.equals("gün")) tekrarTipSpinner1.setSelection(1);
+        else if(tekrarTipSp.equals("hafta")) tekrarTipSpinner1.setSelection(2);
+        else if(tekrarTipSp.equals("ay")) tekrarTipSpinner1.setSelection(3);
+        else if(tekrarTipSp.equals("yıl")) tekrarTipSpinner1.setSelection(4);
+        if(tekrarTipSp.equals("saat")) tekrarTipSpinner2.setSelection(0);
+        else if(tekrarTipSp.equals("gün")) tekrarTipSpinner2.setSelection(1);
+        else if(tekrarTipSp.equals("hafta")) tekrarTipSpinner2.setSelection(2);
+        else if(tekrarTipSp.equals("ay")) tekrarTipSpinner2.setSelection(3);
+        else if(tekrarTipSp.equals("yıl")) tekrarTipSpinner2.setSelection(4);
+        if(tekrarTipSp.equals("saat")) tekrarTipSpinner3.setSelection(0);
+        else if(tekrarTipSp.equals("gün")) tekrarTipSpinner3.setSelection(1);
+        else if(tekrarTipSp.equals("hafta")) tekrarTipSpinner3.setSelection(2);
+        else if(tekrarTipSp.equals("ay")) tekrarTipSpinner3.setSelection(3);
+        else if(tekrarTipSp.equals("yıl")) tekrarTipSpinner3.setSelection(4);
+        if(hatirlatmaTipSp.equals("dakika")) hatirlatmaTipSpinner1.setSelection(0);
+        else if(hatirlatmaTipSp.equals("saat")) hatirlatmaTipSpinner1.setSelection(1);
+        else if(hatirlatmaTipSp.equals("gün")) hatirlatmaTipSpinner1.setSelection(2);
+        else if(hatirlatmaTipSp.equals("hafta")) hatirlatmaTipSpinner1.setSelection(3);
+        else if(hatirlatmaTipSp.equals("ay")) hatirlatmaTipSpinner1.setSelection(4);
+        if(hatirlatmaTipSp.equals("dakika")) hatirlatmaTipSpinner2.setSelection(0);
+        else if(hatirlatmaTipSp.equals("saat")) hatirlatmaTipSpinner2.setSelection(1);
+        else if(hatirlatmaTipSp.equals("gün")) hatirlatmaTipSpinner2.setSelection(2);
+        else if(hatirlatmaTipSp.equals("hafta")) hatirlatmaTipSpinner2.setSelection(3);
+        else if(hatirlatmaTipSp.equals("ay")) hatirlatmaTipSpinner2.setSelection(4);
+        if(hatirlatmaTipSp.equals("dakika")) hatirlatmaTipSpinner3.setSelection(0);
+        else if(hatirlatmaTipSp.equals("saat")) hatirlatmaTipSpinner3.setSelection(1);
+        else if(hatirlatmaTipSp.equals("gün")) hatirlatmaTipSpinner3.setSelection(2);
+        else if(hatirlatmaTipSp.equals("hafta")) hatirlatmaTipSpinner3.setSelection(3);
+        else if(hatirlatmaTipSp.equals("ay")) hatirlatmaTipSpinner3.setSelection(4);
+
         String yeniMi=getIntent().getStringExtra("yeniMi");
         if(yeniMi.equals("hayir")){
             hatirlatmaSayi=getIntent().getStringExtra("hatirlatmaSayi");
@@ -118,7 +160,7 @@ public class RemainderActivity extends AppCompatActivity {
             else{
                 checkboxAlarm1.setChecked(true);
                 hatirlatmaSayiText1.setText(hatirlatmaSayiParts[0]);
-                if(hatirlatmaTipiParts[0].equals("saat")) hatirlatmaTipSpinner1.setSelection(0);
+                if(hatirlatmaTipiParts[0].equals("dakika")) hatirlatmaTipSpinner1.setSelection(0);
                 else if(hatirlatmaTipiParts[0].equals("saat")) hatirlatmaTipSpinner1.setSelection(1);
                 else if(hatirlatmaTipiParts[0].equals("gün")) hatirlatmaTipSpinner1.setSelection(2);
                 else if(hatirlatmaTipiParts[0].equals("hafta")) hatirlatmaTipSpinner1.setSelection(3);
@@ -130,10 +172,10 @@ public class RemainderActivity extends AppCompatActivity {
                     checkboxTekrar1.setChecked(true);
                     tekrarSayiText1.setText(tekrarSayiParts[0]);
                     if(tekrarTipiParts[0].equals("saat")) tekrarTipSpinner1.setSelection(0);
-                    else if(tekrarTipiParts[0].equals("saat")) tekrarTipSpinner1.setSelection(1);
-                    else if(tekrarTipiParts[0].equals("gün")) tekrarTipSpinner1.setSelection(2);
-                    else if(tekrarTipiParts[0].equals("hafta")) tekrarTipSpinner1.setSelection(3);
-                    else if(tekrarTipiParts[0].equals("ay")) tekrarTipSpinner1.setSelection(4);
+                    else if(tekrarTipiParts[0].equals("gün")) tekrarTipSpinner1.setSelection(1);
+                    else if(tekrarTipiParts[0].equals("hafta")) tekrarTipSpinner1.setSelection(2);
+                    else if(tekrarTipiParts[0].equals("ay")) tekrarTipSpinner1.setSelection(3);
+                    else if(tekrarTipiParts[0].equals("yıl")) tekrarTipSpinner1.setSelection(4);
                 }
             }
 
@@ -145,7 +187,7 @@ public class RemainderActivity extends AppCompatActivity {
             else{
                 checkboxAlarm2.setChecked(true);
                 hatirlatmaSayiText2.setText(hatirlatmaSayiParts[1]);
-                if(hatirlatmaTipiParts[1].equals("saat")) hatirlatmaTipSpinner2.setSelection(0);
+                if(hatirlatmaTipiParts[1].equals("dakika")) hatirlatmaTipSpinner2.setSelection(0);
                 else if(hatirlatmaTipiParts[1].equals("saat")) hatirlatmaTipSpinner2.setSelection(1);
                 else if(hatirlatmaTipiParts[1].equals("gün")) hatirlatmaTipSpinner2.setSelection(2);
                 else if(hatirlatmaTipiParts[1].equals("hafta")) hatirlatmaTipSpinner2.setSelection(3);
@@ -157,10 +199,10 @@ public class RemainderActivity extends AppCompatActivity {
                     checkboxTekrar2.setChecked(true);
                     tekrarSayiText2.setText(tekrarSayiParts[1]);
                     if(tekrarTipiParts[1].equals("saat")) tekrarTipSpinner2.setSelection(0);
-                    else if(tekrarTipiParts[1].equals("saat")) tekrarTipSpinner2.setSelection(1);
-                    else if(tekrarTipiParts[1].equals("gün")) tekrarTipSpinner2.setSelection(2);
-                    else if(tekrarTipiParts[1].equals("hafta")) tekrarTipSpinner2.setSelection(3);
-                    else if(tekrarTipiParts[1].equals("ay")) tekrarTipSpinner2.setSelection(4);
+                    else if(tekrarTipiParts[1].equals("gün")) tekrarTipSpinner2.setSelection(1);
+                    else if(tekrarTipiParts[1].equals("hafta")) tekrarTipSpinner2.setSelection(2);
+                    else if(tekrarTipiParts[1].equals("ay")) tekrarTipSpinner2.setSelection(3);
+                    else if(tekrarTipiParts[1].equals("yıl")) tekrarTipSpinner2.setSelection(4);
                 }
             }
             if(hatirlatmaSayiParts[2].equals("xxx")){
@@ -170,7 +212,7 @@ public class RemainderActivity extends AppCompatActivity {
             else{
                 checkboxAlarm3.setChecked(true);
                 hatirlatmaSayiText3.setText(hatirlatmaSayiParts[2]);
-                if(hatirlatmaTipiParts[2].equals("saat")) hatirlatmaTipSpinner3.setSelection(0);
+                if(hatirlatmaTipiParts[2].equals("dakika")) hatirlatmaTipSpinner3.setSelection(0);
                 else if(hatirlatmaTipiParts[2].equals("saat")) hatirlatmaTipSpinner3.setSelection(1);
                 else if(hatirlatmaTipiParts[2].equals("gün")) hatirlatmaTipSpinner3.setSelection(2);
                 else if(hatirlatmaTipiParts[2].equals("hafta")) hatirlatmaTipSpinner3.setSelection(3);
@@ -182,10 +224,10 @@ public class RemainderActivity extends AppCompatActivity {
                     checkboxTekrar3.setChecked(true);
                     tekrarSayiText3.setText(tekrarSayiParts[2]);
                     if(tekrarTipiParts[2].equals("saat")) tekrarTipSpinner3.setSelection(0);
-                    else if(tekrarTipiParts[2].equals("saat")) tekrarTipSpinner3.setSelection(1);
-                    else if(tekrarTipiParts[2].equals("gün")) tekrarTipSpinner3.setSelection(2);
-                    else if(tekrarTipiParts[2].equals("hafta")) tekrarTipSpinner3.setSelection(3);
-                    else if(tekrarTipiParts[2].equals("ay")) tekrarTipSpinner3.setSelection(4);
+                    else if(tekrarTipiParts[2].equals("gün")) tekrarTipSpinner3.setSelection(1);
+                    else if(tekrarTipiParts[2].equals("hafta")) tekrarTipSpinner3.setSelection(2);
+                    else if(tekrarTipiParts[2].equals("ay")) tekrarTipSpinner3.setSelection(3);
+                    else if(tekrarTipiParts[2].equals("yıl")) tekrarTipSpinner3.setSelection(4);
                 }
             }
         }

@@ -195,11 +195,9 @@ public class SettingsActivity extends AppCompatActivity {
 
                 if(darkModeSwitch.isChecked()==true){
                     editor.putString("app-theme","dark");
-                    //sensorView.setBackgroundColor(0xFF383131);
                 }
                 else{
                     editor.putString("app-theme","light");
-                    //sensorView.setBackgroundColor(Color.WHITE);
                 }
                 editor.putString("hatirlatmaSayi",hatirlatmaSayiText.getText().toString());
                 editor.putString("tekrarSayi",tekrarSayiText.getText().toString());
