@@ -198,7 +198,7 @@ public class WeeklyEvents extends AppCompatActivity {
                 whereArgs,
                 null,
                 null,
-                "date" + " DESC"
+                "date" + " ASC"
         );
     }
     @Override

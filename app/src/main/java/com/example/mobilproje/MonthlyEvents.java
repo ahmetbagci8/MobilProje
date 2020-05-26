@@ -196,7 +196,7 @@ public class MonthlyEvents extends AppCompatActivity {
                 whereArgs,
                 null,
                 null,
-                "date" + " DESC"
+                "date" + " ASC"
         );
     }
 

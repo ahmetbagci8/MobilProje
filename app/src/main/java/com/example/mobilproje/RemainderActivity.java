@@ -345,23 +345,5 @@ public class RemainderActivity extends AppCompatActivity {
                 timer.schedule(task, 2000);
             }
         });
-
-    }
-    private Cursor getAllItemsById(long id) {
-        Database dbHelper = new Database(getApplicationContext());
-        mDatabase = dbHelper.getWritableDatabase();
-        String whereClause = "id = ?";
-        String[] whereArgs = new String[] {
-                String.valueOf(id)
-        };
-        return mDatabase.query(
-                "events",
-                null,
-                whereClause,
-                whereArgs,
-                null,
-                null,
-                "date" + " DESC"
-        );
     }
 }

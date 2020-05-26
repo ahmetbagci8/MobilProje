@@ -106,33 +106,7 @@ public class CategoryEvents extends AppCompatActivity {
                 "id" + "=" + id, null);
         mAdapter.swapCursor(getAllItemsByCategory(category)); //burayı düzelt silince filtre kalkıyor
     }
-    private Cursor getAllItems() {
-        return mDatabase.query(
-                "events",
-                null,
-                null,
-                null,
-                null,
-                null,
-                "date" + " DESC"
-        );
-    }
 
-    private Cursor getAllItemsByDate(String date){
-        String whereClause = "date = ?";
-        String[] whereArgs = new String[] {
-                date
-        };
-        return mDatabase.query(
-                "events",
-                null,
-                whereClause,
-                whereArgs,
-                null,
-                null,
-                "date" + " DESC"
-        );
-    }
     private Cursor getAllItemsByCategory(String category){
         String whereClause = "category = ?";
         String[] whereArgs = new String[] {
@@ -145,10 +119,9 @@ public class CategoryEvents extends AppCompatActivity {
                 whereArgs,
                 null,
                 null,
-                "date" + " DESC"
+                "date" + " ASC"
         );
     }
-
     @Override
     protected void onResume() {
         super.onResume();
