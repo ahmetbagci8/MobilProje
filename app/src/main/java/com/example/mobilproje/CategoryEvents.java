@@ -104,7 +104,7 @@ public class CategoryEvents extends AppCompatActivity {
     private void removeItem(long id) {
         mDatabase.delete("events",
                 "id" + "=" + id, null);
-        mAdapter.swapCursor(getAllItems()); //burayı düzelt silince filtre kalkıyor
+        mAdapter.swapCursor(getAllItemsByCategory(category)); //burayı düzelt silince filtre kalkıyor
     }
     private Cursor getAllItems() {
         return mDatabase.query(
@@ -148,22 +148,7 @@ public class CategoryEvents extends AppCompatActivity {
                 "date" + " DESC"
         );
     }
-
-    private Cursor getAllItemsByBetweenDate(String startDate,String stopDate){
-        String whereClause = "date >= ? AND date <= ?";
-        String[] whereArgs = new String[] {
-                startDate,stopDate
-        };
-        return mDatabase.query(
-                "events",
-                null,
-                whereClause,
-                whereArgs,
-                null,
-                null,
-                "date" + " DESC"
-        );
-    }
+    
     @Override
     protected void onResume() {
         super.onResume();
