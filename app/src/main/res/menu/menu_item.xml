@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Tarihe Göre Etkinlikler">
+        <menu>
+            <item
+                android:id="@+id/nav_gunluk"
+                android:title="Günlük Gösterim" />
+            <item
+                android:id="@+id/nav_haftalik"
+                android:title="Haftalık Gösterim" />
+            <item
+                android:id="@+id/nav_aylik"
+                android:title="Aylık Gösterim" />
+        </menu>
+    </item>
+    <item android:title="Kategoriye Göre Etkinlikler">
+        <menu>
+            <item
+                android:id="@+id/nav_gorev"
+                android:title="Görev" />
+            <item
+                android:id="@+id/nav_dogumgunu"
+                android:title="Doğumgünü" />
+            <item
+                android:id="@+id/nav_toplanti"
+                android:title="Toplantı" />
+            <item
+                android:id="@+id/nav_bulusma"
+                android:title="Buluşma" />
+
+            <item
+                android:id="@+id/nav_ders"
+                android:title="Ders Çalışma" />
+
+        </menu>
+    </item>
+    <item
+        android:id="@+id/nav_settings"
+        android:title="Ayarlar" />
+</menu>
